@@ -44,36 +44,38 @@ import (
 )
 
 func main() {
-	fmt.Println("나야22")
+	fmt.Println("나야1")
 	rand.Seed(time.Now().UnixNano())
-
+	fmt.Println("나야2")
 	ccmOptions, err := options.NewCloudControllerManagerOptions()
 	if err != nil {
 		klog.Fatalf("unable to initialize command options: %v", err)
 	}
-
+	fmt.Println("나야3")
 	fss := cliflag.NamedFlagSets{}
+	fmt.Println("나야4")
 	command := app.NewCloudControllerManagerCommand(ccmOptions, cloudInitializer, app.DefaultInitFuncConstructors, fss, wait.NeverStop)
-
+	fmt.Println("나야5")
 	openstack.AddExtraFlags(pflag.CommandLine)
-
+	fmt.Println("나야6")
 	// TODO: once we switch everything over to Cobra commands, we can go back to calling
 	// utilflag.InitFlags() (by removing its pflag.Parse() call). For now, we have to set the
 	// normalize func and add the go flag set by hand.
 	// Here is an sample
 	pflag.CommandLine.SetNormalizeFunc(cliflag.WordSepNormalizeFunc)
 	pflag.CommandLine.AddGoFlagSet(goflag.CommandLine)
-
+	fmt.Println("나야7")
 	// utilflag.InitFlags()
 	logs.InitLogs()
 	defer logs.FlushLogs()
 
 	klog.V(1).Infof("openstack-cloud-controller-manager version: %s", version.Version)
-
+	fmt.Println("나야8")
 	if err := command.Execute(); err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
+	fmt.Println("나야9")
 }
 
 func cloudInitializer(config *config.CompletedConfig) cloudprovider.Interface {

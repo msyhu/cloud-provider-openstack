@@ -27,6 +27,6 @@ LABEL name="openstack-cloud-controller-manager" \
       summary="OpenStack cloud controller manager" \
       help="none"
 
-ADD rootfs.tar /
+#ADD rootfs.tar /
 
-CMD ["/bin/openstack-cloud-controller-manager"]
+CMD ["/out/openstack-cloud-controller-manager"]

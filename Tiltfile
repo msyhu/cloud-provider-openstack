@@ -9,8 +9,6 @@ print("""
 ✨ 목표는 tilt 를 occm에 적용하는 것!
 -----------------------------------------------------------------
 """.strip())
-warn('ℹ️ Open {tiltfile_path} in your favorite editor to get started.'.format(
-    tiltfile_path=config.main_path))
 
 # 1. go build
 # 2. docker build
@@ -30,15 +28,13 @@ local_resource(
 )
 
 docker_build(
-    'occm-image',
+    'mmsyhu/openstack-cloud-controller-manager',
     '.',
-    entrypoint=['/app/out/ike'],
-    dockerfile='deployments/Dockerfile',
+    dockerfile='Dockerfile',
     only=[
         './out',
     ],
-    live_update=[
-        sync('./out', '/app/out'),
-    ],
 )
+
+k8s_yaml('deployments/openstack-cloud-controller-manager.yaml')
 
