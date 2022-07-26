@@ -44,6 +44,7 @@ import (
 )
 
 func main() {
+	fmt.Println("나야")
 	rand.Seed(time.Now().UnixNano())
 
 	ccmOptions, err := options.NewCloudControllerManagerOptions()
