@@ -21,7 +21,7 @@ reg = os.environ.get('REGISTRY', '')
 if reg:
     default_registry(reg)
 
-compile_cmd = 'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o openstack-cloud-controller-manager-amd64 cmd/openstack-cloud-controller-manager/main.go'
+compile_cmd = 'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o out/openstack-cloud-controller-manager-amd64 cmd/openstack-cloud-controller-manager/main.go'
 
 local_resource(
     'occm-compile',
@@ -29,4 +29,16 @@ local_resource(
     deps=['./cmd', './pkg'],
 )
 
+docker_build(
+    'occm-image',
+    '.',
+    entrypoint=['/app/out/ike'],
+    dockerfile='deployments/Dockerfile',
+    only=[
+        './out',
+    ],
+    live_update=[
+        sync('./out', '/app/out'),
+    ],
+)
 
