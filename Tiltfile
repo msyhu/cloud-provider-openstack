@@ -28,7 +28,7 @@ local_resource(
 )
 
 docker_build(
-    'mmsyhu/openstack-cloud-controller-manager',
+    'openstack-cloud-controller-manager:v0.0.1.1',
     '.',
     dockerfile='Dockerfile',
     only=[

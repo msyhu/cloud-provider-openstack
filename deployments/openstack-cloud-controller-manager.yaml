@@ -11,16 +11,16 @@ metadata:
 spec:
   containers:
     - name: openstack-cloud-controller-manager
-      image: docker.io/mmsyhu/openstack-cloud-controller-manager:v1.24.0-22-gf75091d-dirty
+      image: openstack-cloud-controller-manager:v0.0.1.1
       imagePullPolicy: IfNotPresent
       args:
-        - /bin/openstack-cloud-controller-manager
+        - /openstack-cloud-controller-manager-amd64
         - --v=5
-        - --cloud-config=/etc/kubernetes/cloud-config
         - --cloud-provider=openstack
-        - --kubeconfig=/etc/kubernetes/admin.conf
-        - --bind-address=127.0.0.1
-        - --cluster-name=ike-prod-test03-ms-ike-prod-01
+#        - --cloud-config=/etc/kubernetes/cloud-config
+#        - --kubeconfig=/etc/kubernetes/admin.conf
+#        - --bind-address=127.0.0.1
+#        - --cluster-name=ike-prod-test03-ms-ike-prod-01
       volumeMounts:
         - mountPath: /etc/kubernetes
           name: k8s-certs
